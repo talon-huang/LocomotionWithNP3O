@@ -41,7 +41,7 @@ class Go2ConstraintHimRoughCfg( LeggedRobotCfg ):
         num_observations = n_proprio + n_scan + history_len*n_proprio + n_priv_latent
 
     class init_state( LeggedRobotCfg.init_state ):
-        pos = [0.0, 0.0, 0.42] # x,y,z [m]
+        pos = [0.0, 0.0, 0.25] # x,y,z [m]
         """
           unitree go2 sdk order:
                -0.1 <-3 FR_hip_joint 0 -> 0.0
@@ -137,13 +137,15 @@ class Go2ConstraintHimRoughCfg( LeggedRobotCfg ):
     #         heading = [-3.14, 3.14]
 
     class asset( LeggedRobotCfg.asset ):
-        file = '{ROOT_DIR}/resources/go2/urdf/go2.urdf'
+        # file = '{ROOT_DIR}/resources/go2/urdf/go2.urdf'
+        
+        file = '{ROOT_DIR}/resources/cyberdog2/urdf/cyberdog2.urdf'
         foot_name = "foot"
         name = "go2"
         penalize_contacts_on = ["thigh", "calf"]
-        terminate_after_contacts_on = []#["base"]
+        terminate_after_contacts_on = ["base"]
         self_collisions = 0 # 1 to disable, 0 to enable...bitwise filter
-        flip_visual_attachments = True
+        flip_visual_attachments = False
   
     class rewards( LeggedRobotCfg.rewards ):
         soft_dof_pos_limit = 0.9 
@@ -152,7 +154,7 @@ class Go2ConstraintHimRoughCfg( LeggedRobotCfg ):
         # base_height_target = 0.34
         # clearance_height_target = -0.24
 
-        base_height_target = 0.32
+        base_height_target = 0.25
         clearance_height_target = -0.22
 
         only_positive_rewards = True
