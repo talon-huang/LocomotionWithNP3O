@@ -108,9 +108,9 @@ def play(args):
         z_vel += torch.square(env.base_lin_vel[:, 2])
         xy_vel += torch.sum(torch.square(env.base_ang_vel[:, :2]), dim=1)
 
-        env.commands[:,0] = 1
+        env.commands[:,0] = 0
         env.commands[:,1] = 0
-        env.commands[:,2] = 0
+        env.commands[:,2] = 3
         env.commands[:,3] = 0
         actions = policy.act_teacher(obs.half())
         # actions = torch.clamp(actions,-1.2,1.2)
